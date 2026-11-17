@@ -171,3 +171,37 @@ Aporte v2.0 (Síntesis Maestra, consenso refinado del tribunal 1, sin fila por n
 | 120.1 | Checklist final antes de declarar completa una tarea (15 ítems: comportamiento, ACs, preservación, tests, checks estáticos, diff) | P · Final Checklist |
 | 120.2 | Higiene del diff: sin debug, sin temporales, sin secrets, sin cambios no relacionados | P · Final Checklist |
 | 120.3 | Contratos/APIs, seguridad de datos/migraciones y sincronización de docs considerados donde apliquen | P · Final Checklist |
+
+## git-safety — origen §§13-14 + §§55-58 + §§63-64
+
+Inventario: 25 normas → **P: 22 · F: 3 · D: 0**.
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 13.1 | Git como fundación cuando esté disponible | F → bootstrap-foundation (Git, Safety and Recovery) |
+| 13.2 | Nuevo: init cuando proceda + .gitignore + checkpoints sin ruido | F → bootstrap-foundation (idem) |
+| 13.3 | Antes de tocar existente: git status, entender cambios, preservar | P · Before Meaningful Changes |
+| 13.4 | Uncommitted ≠ desechable | P · Before Meaningful Changes + Protected Work |
+| 13.5 | Sin comandos destructores ni reescritura de historia sin autorización | P · Before Meaningful Changes + Safety |
+| 14.1 | Git es VCS, no backup universal | P · Recovery (intro) |
+| 14.2 | Recuperación proporcional al riesgo | F → bootstrap-foundation (idem) |
+| 14.3 | Sin copias duplicadas inútiles | P · Recovery (backups organizados) |
+| 14.4 | Punto de recuperación antes de operaciones destructivas | P · Recovery paso 5 |
+| 55.1 | Antes de cambios: status, rama, historia reciente, modificaciones existentes | P · Before Meaningful Changes |
+| 55.2 | Lista de prohibidos sin autorización: reset/clean/revert/overwrite/delete untracked/stash/rewrite | P · Before Meaningful Changes |
+| 55.3 | Git status no define propiedad; uncommitted puede ser intencional | P · Before Meaningful Changes |
+| 56.1 | Checkpoint = estado significativo recuperable (fundación/arquitectura/feature/migración/hito) | P · Checkpoints |
+| 56.2 | Sin secrets/temporales/debug/generados-excluidos en commits; sin commits basura | P · Checkpoints |
+| 56.3 | Sin amend/reescritura de commits ajenos | P · Checkpoints |
+| 57.1 | Destructivo/alto riesgo: verificar target y scope, entender rollback, dry runs, checkpoint | P · Recovery 1-5 |
+| 57.2 | Tracked ≠ seguro de destruir | P · Recovery |
+| 57.3 | Estado externo importante: estrategia del proyecto; backups organizados y distinguibles | P · Recovery |
+| 58.1 | Inspeccionar antes de sobrescribir; edición focalizada > reescritura total; no regenerar configs a ciegas | P · File Safety |
+| 58.2 | Herramientas automáticas: scope antes, diff resultante, revertir modificaciones accidentales | P · File Safety |
+| 63.1 | Lista de protección: committed/staged/unstaged/untracked/config local/estado local generado/no-Git | P · Protected Work |
+| 63.2 | Uncommitted ≠ desechable (énfasis worker) | P · Protected Work |
+| 63.3 | Solape con trabajo del usuario: inspeccionar, preservar, mínimo cambio, explicar conflictos | P · Protected Work |
+| 64.1 | Cambios atribuibles: identificar creadados/cambiados/borrados/generados/migraciones/docs/config; cambio inesperado → investigar | P · Change Isolation |
+| 64.2 | Nunca normalizar diffs grandes no relacionados como "cleanup" | P · Change Isolation |
+
+Nota: la recuperación ante errores PROPIOS (§70) vive en la skill debugging; el protocolo de 5 pasos está repetido aquí en Change Isolation por operatividad (1 línea de solape declarada).
