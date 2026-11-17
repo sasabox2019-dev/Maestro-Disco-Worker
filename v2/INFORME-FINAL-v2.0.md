@@ -66,7 +66,7 @@ siempre + 1.027 de skills leídas SOLO cuando la tarea las dispara (~10% del cos
 Cada fila es auditable en `v2/kit/skills/MAP.md` (sección origen + sección destino).
 Las 41 F tienen destino declarado; las 12 de testing↔debugging llevan doble ancla.
 
-## 3. Erratas propias acumuladas (12 — todas cazadas por el método o por auditoría, todas corregidas)
+## 3. Erratas propias acumuladas (13 — todas cazadas por el método o por auditoría, todas corregidas)
 
 | # | Fase | Errata | Cazada por |
 |---|---|---|---|
@@ -82,6 +82,7 @@ Las 41 F tienen destino declarado; las 12 de testing↔debugging llevan doble an
 | 10 | F4 | Arnés `guarded()`: jobs en background reciben stdin /dev/null (falso fallo S2) | repro manual en verde |
 | 11 | F4+F5 | `grep -E` con `\|` (sintaxis BRE) → ceros falsos en anclas — RECURRENTE en 2 tandas | re-grep con patrones limpios |
 | 12 | F5 | LEDGER entrada 1 con placeholder «~09:0x» sin resolver | auditoría externa (H2) |
+| 13 | F6 | Informe §7/§8: «21 commits» congelado (el conteo PRE-commit del propio informe); real 23 por máquina — errata nº 1 viviendo en el documento que la confiesa | re-auditoría A-Z ordenada por el dueño |
 
 Lección transversal: la aritmética y los patrones se CALCULAN/PRUEBAN, nunca se leen de memoria.
 
@@ -134,6 +135,13 @@ sh -n verificar.sh OK · sh -n pre-commit OK
 Manual: paths citados 7/7 existen · typo v1.1 «Diagnica» ausente · «Diagnostica» ×1
 ```
 
+### 5.5 Re-auditoría A-Z post-cierre (ordenada por el dueño, 2026-11-17)
+
+- Re-lectura COMPLETA de los 24 archivos (5 contratos, 12 skills, MAP, 5 plantillas, Manual): cero contradicciones cruzadas; precedencia idéntica en los 4 sitios (núcleo, worker, boot worker como triple explícito; boot master como contract-wins + regla 3); tablas de triggers IDÉNTICAS núcleo = worker = plantilla AGENTS (`diff` vacío, 12 filas cada una); reglas 10/10/10; paths del Manual 7/7; 12/12 skills citadas = carpetas.
+- Baterías re-ejecutadas de cero: skills 214 OK · 0 FAIL · TALLY 357 filas · P 316 · F 41 · D 0; plantillas `sh -n` ×2 + permisos exec 755 + batería 24/24; `/tmp` sin restos.
+- Corrección aplicada: «21 commits» (§7/§8) → 23 medido por máquina (errata nº 13).
+- Hallazgo menor SIN fix (declarado): Manual §8 expone la cadencia --fast/--full sin condición explícita, acotada por su cabecera a proyectos v2 (F3 instala los dientes); el caso legacy está condicionado en §1. Contextos distintos, no contradicción.
+
 ## 6. Lo que NO se pudo verificar (declarado, no omitido)
 
 1. **Adherencia empírica de los prompts en un agente real** — es el Proyecto Piloto #2
@@ -144,11 +152,16 @@ Manual: paths citados 7/7 existen · typo v1.1 «Diagnica» ausente · «Diagnos
    prueba; implementada, no ejercitada.
 4. **Comportamiento del blindaje con /dev/tty real interactivo** — probado por pipe y
    por ausencia de tty (S1/S2/S3); la tty física se probará en el piloto.
+5. **Frontmatter YAML por librería estricta y destinos F del MAP** — las 12 skills se
+   validan con el parser propio del verificador; PyYAML no está disponible en el entorno
+   (`python3 -c 'import yaml'` → ModuleNotFoundError), así que un parse YAML de librería
+   no se ejecutó. Y los destinos de las 41 filas F del MAP (sección concreta de
+   bootstrap-foundation) son verificación semántica por lectura, no check mecánico.
 
 ## 7. Estado final de Git
 
 ```
-rama v2.0: 21 commits (420c409 … a1c4cc7 + este informe) · tree limpio · push OK
+rama v2.0: 23 commits (420c409 … presente informe; `git rev-list --count main..v2.0` = 23 — los propios de la rama; alcanzables desde origin/v2.0 = 25, que suma los 2 heredados de main: la cuenta depende de la lente, la operativa es main..v2.0) · tree limpio · push OK
 main:      cc3de3f — INTACTA (v1.1 congelada; tag v1.1-final → cc3de3f verificado)
 remoto:    main=cc3de3f · v2.0=a1c4cc7
 ```
@@ -161,7 +174,7 @@ remoto:    main=cc3de3f · v2.0=a1c4cc7
    dueño auto-aprobar su propio PR en una cuenta personal. Opciones: aprobar con la segunda
    cuenta (BilboDev), o bajar la regla a «Require PR» sin approvals (sigue matando el
    botón verde del banner).
-3. Tras el merge (squash NO recomendado: los 21 commits son la historia de la obra):
+3. Tras el merge (squash NO recomendado: los 23 commits son la historia de la obra):
    tag del hito → `git tag v2.0 && git push --tags`, y borrar la rama si se desea.
 
 **ESTADO: LISTO PARA PR — esperando señal del dueño.**
