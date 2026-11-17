@@ -315,3 +315,31 @@ Aporte v2.0 sin fila (escape histórico del proyecto piloto, semilla del Ledger 
 | 46.2 | Rechazar temprano; cada caso malo tiene decisión; validar antes de persistir | P · Validation |
 | 47.1 | Preservar comportamiento observable salvo cambio explícito | P · Backwards Compatibility |
 | 47.2 | Deprecar antes de eliminar; versionar rupturas; jamás romper consumidores en silencio | P · Backwards Compatibility |
+
+## debugging — origen §§52-54 + §70
+
+Inventario: 19 normas → **P: 19 · F: 0 · D: 0**.
+
+Aportes v2.0 sin fila: (1) lección v2.3-v2.4 del proyecto piloto (protocolo de la misión): ante error "imposible", re-verificar bytes antes de teorizar → sección Impossible States; (2) semillas del Ledger (Manual v1.1 §8-9): corrupción undefined invisible a auditorías y pycache obsoleto con tests verdes falsos → barridos en Impossible States / Classify.
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 52.1 | Leer el error real ANTES de teorizar | P · Protocol paso 1 + Tool Failures |
+| 52.2 | Clasificar causa: mis cambios / entorno / transitorio / preexistente | P · Classify the Failure |
+| 52.3 | Nunca modificar aleatoriamente hasta que el error desaparezca | P · Protocol (regla dice) |
+| 52.4 | Si el fix no funciona, el diagnóstico estaba mal: re-examinar, no apilar fixes | P · Protocol (regla) |
+| 52.5 | Fallo persistente de entorno: reportar con todo lo intentado, sin reintentos en silencio | P · Tool Failures |
+| 53.1 | Identificar fallos preexistentes; baseline cuando el estado no está claro | P · Classify (baseline) |
+| 53.2 | Distinguir fallo nuevo de preexistente con evidencia (diff/bisect), no esperanza | P · Classify |
+| 53.3 | No ocultar preexistentes; no arreglar lo no relacionado para verde; reportar y seguir | P · Pre-Existing Failures |
+| 53.4 | Si hay que avanzar alrededor, documentar qué falla y qué se verificó igualmente | P · Pre-Existing Failures |
+| 54.1 | Protocolo completo: leer → localizar → clasificar → hipótesis | P · Protocol pasos 1-4 |
+| 54.2 | Hipótesis concreta y verificada; corrección mínima; re-validar | P · Protocol pasos 4-7 |
+| 54.3 | Sin cambios aleatorios (énfasis §54) | P · Protocol |
+| 54.4 | Sin modificar código no relacionado por verde (énfasis §54) | P · Pre-Existing |
+| 54.5 | Diagnóstico con datos reales cuando el síntoma mienta | P · Protocol (verify) + Impossible States |
+| 54.6 | Determinar causado por mis cambios vs preexistente | P · Classify |
+| 70.1 | Error propio: parar; entender (antes/después); sin fixes de pánico apilados | P · Recovery pasos 1-2 |
+| 70.2 | Revertir a último estado bueno y reabordar deliberadamente si hace falta | P · Recovery paso 3 |
+| 70.3 | Recuperar solo cambios propios; nunca reset/amplio que barra trabajo ajeno | P · Recovery paso 4 (puntero a git-safety) |
+| 70.4 | Documentar la lección; escape sin check → check (v2: Ledger) | P · Recovery paso 5 |
