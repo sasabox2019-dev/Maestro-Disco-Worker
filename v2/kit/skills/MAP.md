@@ -205,3 +205,38 @@ Inventario: 25 normas → **P: 22 · F: 3 · D: 0**.
 | 64.2 | Nunca normalizar diffs grandes no relacionados como "cleanup" | P · Change Isolation |
 
 Nota: la recuperación ante errores PROPIOS (§70) vive en la skill debugging; el protocolo de 5 pasos está repetido aquí en Change Isolation por operatividad (1 línea de solape declarada).
+
+## testing — origen §§48-54
+
+Inventario: 26 normas → **P: 26 · F: 0 · D: 0**.
+
+§§52-54 (tool failures, pre-existing failures, protocolo de debugging) se mudan a la skill debugging (skill 8, origen §§52-54 + §70) — puntero en la sección "On Failures".
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 48.1 | Cambios comportamentales significativos → tests apropiados añadidos/actualizados | P · What Gets Tested |
+| 48.2 | Seguir el estilo/framework de testing existente del proyecto | P · What Gets Tested |
+| 48.3 | Testear comportamiento observable, no internos (salvo interno = contrato) | P · What Gets Tested |
+| 48.4 | Cubrir edge cases y failure paths relevantes | P · What Gets Tested |
+| 49.1 | Cobertura proporcional al riesgo, no uniforme | P · Coverage Proportional to Risk |
+| 49.2 | Prioridad: dominio, seguridad, integridad de datos, fundamentos difíciles, integraciones propensas a regresión | P · Coverage (lista 1-5) |
+| 49.3 | Bajo valor: accessors triviales, generado, cosmética | P · Coverage |
+| 49.4 | Ni dogma 100% ni cero tests para comportamiento significativo | P · Coverage |
+| 50.1 | NUNCA debilitar/borrar/saltar aserciones para pasar | P · Test Integrity + Safety |
+| 50.2 | Test obsoleto legítimo → reemplazo con cobertura equivalente, declarado | P · Test Integrity |
+| 50.3 | Requisito cambiado → tests cambiados en la misma tarea (documentan intención) | P · Test Integrity |
+| 51.1 | Validación progresiva en círculos que se ensanchan (4 pasos) | P · Progressive Validation |
+| 51.2 | Ni validación cara a ciegas ni saltos a ciegas | P · Progressive Validation |
+| 51.3 | Cadencia --fast por edición / --full antes de commit | P · Progressive Validation (aporte v2: dientes mecánicos) |
+| 52.1 | Fallo de tool: leer error, clasificar propio/entorno/preexistente, sin cambios aleatorios | P → debugging (mudada, puntero) |
+| 52.2 | Fix verificado tras corregir | P → debugging (mudada) |
+| 52.3 | Fallo preexistente no bloqueante → reportar, no tocar | P → debugging (mudada) |
+| 53.1 | Identificar y reportar fallos preexistentes con claridad | P → debugging (mudada) |
+| 53.2 | Distinguir fallo nuevo de preexistente | P → debugging (mudada) |
+| 53.3 | No ocultar fallos preexistentes ni "arreglar" lo no relacionado para verde | P → debugging (mudada) |
+| 54.1 | Protocolo: leer error → localizar → clasificar → hipótesis → verificar | P → debugging (mudada) |
+| 54.2 | Corrección mínima + re-validar | P → debugging (mudada) |
+| 54.3 | Sin cambios aleatorios hasta que el error desaparezca | P → debugging (mudada) |
+| 54.4 | Sin modificar código no relacionado por verde | P → debugging (mudada) |
+| 54.5 | Diagnóstico con datos reales cuando el síntoma mienta | P → debugging (mudada) |
+| 54.6 | Determinar causado por mis cambios vs preexistente | P → debugging (mudada) |
