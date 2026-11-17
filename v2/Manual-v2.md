@@ -191,6 +191,18 @@ PROTECCIÓN DE MAIN — práctica estándar de todo proyecto con remoto:
   una rama a medias en main sin que nada lo impidiera. La protección
   de rama es el diente de GitHub; actívala el día que el repo existe.
 
+RAMAS Y COMMITS — convención de este repo (y de todo proyecto v2):
+  Ramas neutras nombradas por el trabajo: limpieza/ · fix/ · docs/ ·
+  feature/... — NUNCA el nombre de la app herramienta que asista.
+  Mensajes de commit que describen la OBRA, no el agente que la hizo.
+  → POR QUÉ: el repo pertenece a su sistema, no a la herramienta del
+  día; el rastro de nombres de apps en la historia ensucia el registro
+  y responde «con qué» donde debe responder «qué y por qué».
+  (Lección viva: una rama con nombre de herramienta, cazada y renombrada
+  antes de su primer push en este mismo repo.)
+  Excepción declarada: old/ conserva sus menciones históricas —
+  documentan la época real que parió las boot cards. Historia no se edita.
+
 ═══════════════════════════════════════════
 ## 7. MANTENIMIENTO, RESPALDOS Y TAGS (política REAL)
 ═══════════════════════════════════════════
