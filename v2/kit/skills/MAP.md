@@ -240,3 +240,49 @@ Inventario: 26 normas → **P: 26 · F: 0 · D: 0**.
 | 54.4 | Sin modificar código no relacionado por verde | P → debugging (mudada) |
 | 54.5 | Diagnóstico con datos reales cuando el síntoma mienta | P → debugging (mudada) |
 | 54.6 | Determinar causado por mis cambios vs preexistente | P → debugging (mudada) |
+
+## architecture-design — origen §§17-33
+
+Inventario: 39 normas → **P: 38 · F: 1 · D: 0**.
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 17.1 | Análisis previo: qué se pide, problema, consumidores, actual vs esperado, cambia/no-cambia, componentes, ACs, riesgos, constraints | P · Requirement Analysis |
+| 17.2 | Traducir requisito vago a comportamiento concreto | P · Requirement Analysis |
+| 17.3 | No inventar requisitos | P · Requirement Analysis |
+| 17.4 | Ambigüedad: baja → convención; alta → preguntar; no preguntar lo que no afecta materialmente | P · Requirement Analysis |
+| 18.1 | Prioridades en conflicto (10 niveles) | P · Priorities |
+| 18.2 | Nunca sacrificar prioridad alta por baja; trade-offs explícitos | P · Priorities |
+| 19.1 | ACs concretas y medibles ANTES de implementar | P · Acceptance Criteria |
+| 19.2 | "Funciona" no es criterio; en v2 = SPEC.md por IDs | P · Acceptance Criteria (punte a spec-writing) |
+| 20.1 | Decisión significativa: alternativas → evaluar → más simple viable → justificar → registrar (formato ADR) | P · Architectural Reasoning |
+| 21.1 | Complejidad proporcional al problema real | P · Complexity Matches the Problem |
+| 21.2 | Empezar simple; complejidad solo con evidencia; costura limpia para evolucionar | P · Complexity |
+| 22.1 | Dependencias apuntan a estabilidad; política no depende de detalles volátiles | P · Dependency Direction |
+| 22.2 | Sin dependencias circulares; infra/UI enchufables en el límite del dominio | P · Dependency Direction |
+| 23.1 | Investigar capacidades/límites ANTES de construir sobre tecnología crítica | P · Technology Research |
+| 23.2 | Calidad de fuentes: oficial > código > tests > artículos > memoria del modelo | P · Technology Research |
+| 23.3 | Nunca fabricar APIs/comandos/flags/rutas; verificación experimental si es crítico; vigilar staleness (versiones/fechas) | P · Technology Research |
+| 24.1 | Información externa: verificar con fuente autoritativa; notas de versión/fecha | F · Technology Research (fusionada con 23.2-23.3) |
+| 25.1 | Política de dependencias: stdlib > establecida > nueva | P · Dependency Policy |
+| 25.2 | Evaluar: mantenimiento, seguridad, licencia, transitivas, tamaño, compatibilidad | P · Dependency Policy |
+| 25.3 | Pin de versiones + lockfiles; sin upgrades por novedad | P · Dependency Policy |
+| 26.1 | Estructura alrededor del dominio; agrupar por feature; relacionados juntos; la estructura comunica intención | P · Project Structure |
+| 26.2 | Separar concerns reales: UI, lógica, datos, infra; extraer compartidos deliberadamente | P · Project Structure |
+| 27.1 | Esqueleto básico antes de código sustancial; evolución previsible sin sobre-ingeniería | P · Project Structure |
+| 27.2 | Si la estructura pelea contra el trabajo, arreglarla temprano | P · Project Structure |
+| 28.1 | Config separada del código; defaults sensatos; variables requeridas documentadas | P · Configuration |
+| 28.2 | Validación al arranque con error claro que nombre la clave | P · Configuration |
+| 28.3 | Sin hardcode de valores por entorno; build-time vs runtime explícito | P · Configuration |
+| 29.1 | Secrets jamás en VCS/código/logs; .env ignorado o gestor; documentar sin valores | P · Secrets |
+| 29.2 | Fail fast con mensaje claro si falta; rotar lo expuesto por accidente | P · Secrets |
+| 30.1 | Entornos objetivo explícitos (dev/test/prod); diferencias documentadas; sin "works on my machine" | P · Environments |
+| 30.2 | Documentar supuestos: SO, versiones, servicios | P · Environments |
+| 31.1 | APIs deliberadas: consistencia, claridad, errores explícitos sin fugas internas | P · API and Contract Design |
+| 31.2 | Validación en fronteras; estrategia de versiones; compatibilidad salvo ruptura explícita; idempotencia donde habrá retries | P · API and Contract Design |
+| 31.3 | Contratos documentados; nunca cambiar comportamiento observable en silencio | P · API and Contract Design |
+| 32.1 | Modelar dominio explícito: entidades, relaciones, constraints, invariantes; el schema captura reglas de negocio | P · Data Modeling |
+| 32.2 | Requerido vs opcional por campo; índices según patrones de acceso; camino de migración desde el día 1 | P · Data Modeling |
+| 33.1 | Schema como código: versionado, revisable, reversible | P · Database and Migrations |
+| 33.2 | Test de migraciones con datos representativos; destructivas con backup + dry-run + staged | P · Migrations |
+| 33.3 | Nunca irreversible sobre datos de producción sin autorización + backup fresco; cada migración documenta intención | P · Migrations + Safety |
