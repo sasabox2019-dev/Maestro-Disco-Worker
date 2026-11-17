@@ -392,3 +392,70 @@ Inventario: 24 normas → **P: 24 · F: 0 · D: 0**.
 | 38.6 | Edge tiempo: zonas horarias, DST, medianoche, definición de "hoy", clock skew | P · Edge-Case Sweep |
 | 38.7 | Edge locale: separadores decimales, formatos de fecha, casing por idioma | P · Edge-Case Sweep |
 | 38.8 | Edge repetición: el mismo evento dos veces (retry, doble clic, re-entrega) | P · Edge-Case Sweep |
+
+## memory-maintenance — origen §§89-113 (condensados)
+
+Inventario: 56 normas → **P: 21 · F: 35 · D: 0**.
+
+El lado FUNDACIÓN de §§89-107 (crear la memoria en el bootstrap: qué docs, con qué rol, mínimos, jerarquía, materialización inicial, test de ingeniero competente, independencia de modelo) vive en bootstrap-foundation (Knowledge Materialization). Esta skill conserva el lado MANTENIMIENTO: actualizar, detectar staleness, ciclo ADR, lectura progresiva. Reparto filas → F = mudada a bf.
+
+Aportes v2.0 sin fila: (1) DECISIONS.md con ciclo de vida ADR (Estado activa/superada/obsoleta + supersedes + edición in-place) — Síntesis Fase 3 / Plan §3.4; (2) doctor de memoria + staleness warning — Síntesis Fase 4 (verificar.sh --full); (3) doble test de Anthropic/Gloaguen para no escribir lo deducible — Síntesis, hallazgo 1.
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 89.1 | Conocimiento se persiste en archivos del repo (conversación temporal) | F → bootstrap-foundation |
+| 89.2 | Mínimo: AGENTS.md + README.md | F → bootstrap-foundation |
+| 89.3 | Docs adicionales solo con valor real | F → bootstrap-foundation |
+| 90.1 | AGENTS.md = entrada operativa (qué/límites/dónde/comandos/reglas/profundizar) | F → bootstrap-foundation |
+| 90.2 | Índice y guía; nunca copia del universal; sin consejos genéricos | F → bootstrap-foundation |
+| 91.1 | Mapa conciso en AGENTS.md | F → bootstrap-foundation |
+| 91.2 | Adaptado al proyecto; no cada archivo | F → bootstrap-foundation |
+| 91.3 | El mapa EVOLUCIONA cuando cambia la estructura importante | P · The Update Question (pregunta 2) |
+| 92.1 | README para humanos (propósito, prerequisitos, uso) | F → bootstrap-foundation |
+| 92.2 | No manual de arquitectura; útil al recién llegado | F → bootstrap-foundation |
+| 93.1 | ARCHITECTURE.md solo si complejidad lo justifica | F → bootstrap-foundation |
+| 93.2 | Solo lo difícil de inferir; no cada clase | F → bootstrap-foundation |
+| 94.1 | DECISIONS.md cuando haya decisiones que preservar | F → bootstrap-foundation (creación) + esta skill (ciclo de vida) |
+| 94.2 | Formato decisión/contexto/rationale/alternativas/consecuencias; sin trivialidades | F → bootstrap-foundation; formato extendido a ADR aquí |
+| 95.1 | DEVELOPMENT.md solo si el workflow lo justifica | F → bootstrap-foundation |
+| 95.2 | Comandos ejecutables sobre prosa vaga | F → bootstrap-foundation |
+| 96.1 | Jerarquía AGENTS → mapa+reglas → docs → código | F → bootstrap-foundation |
+| 96.2 | AGENTS.md es la puerta; la tarea decide qué más leer | F → bootstrap-foundation |
+| 97.1 | Procedimiento progresivo del agente futuro | F → bootstrap-foundation (materialización) — mismo procedimiento aquí en Progressive Reading |
+| 97.2 | Entendimiento suficiente, no lectura máxima | P · Progressive Reading |
+| 98.1 | Registrar decisiones antes de que se olviden (stack, arquitectura, límites, comandos, supuestos) | F → bootstrap-foundation |
+| 98.2 | Conocimiento durable, no debris conversacional | P · What Not to Store |
+| 99.1 | Jerarquía de verdad (usuario/repo/tests/docs/…) | F → bootstrap-foundation (Source of Truth) |
+| 99.2 | Usuario define resultado; repo define existencia | F → bootstrap-foundation |
+| 99.3 | Conflicto: nunca elegir en silencio | F → bootstrap-foundation |
+| 100.1 | Cambio de arquitectura/comandos/estructura → actualizar conocimiento EN el mismo cambio; quitar obsoleto; preservar historia útil; docs nunca segunda implementación en conflicto | P · The Update Question + In-Place |
+| 100.2 | Docs y código en desacuerdo → investigar y corregir el lado stale | P · Detecting and Curing Staleness |
+| 101.1 | Secuencia de implementación con confianza temprana | F → bootstrap-foundation |
+| 101.2 | Sin fundación enorme antes de validar la idea | F → bootstrap-foundation |
+| 102.1 | Slice vertical temprano | F → bootstrap-foundation |
+| 102.2 | Valida arquitectura/tooling/integraciones/flujo | F → bootstrap-foundation |
+| 102.3 | No forzar slice donde no beneficia | F → bootstrap-foundation |
+| 103.1 | Bootstrap completo solo cuando continuable sin la conversación | P · What Memory Is For (la barra que esta skill mantiene) |
+| 103.2 | Debe dejar estructura/tech/decisiones/comandos/validación/mapa/contexto | F → bootstrap-foundation |
+| 103.3 | Test del ingeniero competente | F → bootstrap-foundation |
+| 104.1 | Checklist de handoff | F → bootstrap-foundation |
+| 104.2 | Repo listo para otra sesión/agente/modelo | P · What Memory Is For |
+| 105.1 | No almacenar contexto privado/razonamiento oculto/instrucciones modelo-específicas | P · What Not to Store |
+| 105.2 | Guardar hechos/decisiones/constraints/arquitectura/comandos/procedimientos | F → bootstrap-foundation |
+| 105.3 | La IA trabaja SOBRE la memoria, no ES la memoria | F → bootstrap-foundation |
+| 106.1 | El proyecto sobrevive a chat desaparecido/modelo cambia/tool cambia/meses | P · What Memory Is For |
+| 106.2 | Conocimiento esencial solo en conversación = no materializado | P · What Memory Is For |
+| 107.1 | Reporte bootstrap Established/Created/Verified/Remaining | F → bootstrap-foundation |
+| 107.2 | Sin "production-ready" inflado | F → bootstrap-foundation |
+| 109.1 | El proyecto continúa sin la conversación previa | P · What Memory Is For |
+| 109.2 | Protocolo de continuación (leer AGENTS, git, scope, docs relevantes) | F → worker v2 (startup) — mismo contenido aquí en Progressive Reading |
+| 110.1 | AGENTS.md primera fuente; usar como índice | P · Detecting and Curing Staleness |
+| 110.2 | No asumir completo/correcto; stale → investigar verdad actual y actualizar | P · Detecting and Curing Staleness |
+| 110.3 | Nunca obedecer docs stale sobre evidencia del repo | P · Detecting and Curing Staleness + Safety |
+| 111.1 | Cadena de lectura progresiva (AGENTS → git → scope → docs → código) | P · Progressive Reading |
+| 111.2 | Juicio: cambio de botón ≠ docs de migración; migración necesita arquitectura+schema+decisiones | P · Progressive Reading |
+| 111.3 | Entendimiento suficiente, ni lectura máxima ni cero | P · Progressive Reading |
+| 112.1 | Las 7 preguntas tras cambio significativo | P · The Update Question |
+| 112.2 | Sin cambio durable → sin docs de ceremonia | P · The Update Question |
+| 113.1 | Corregir lo incorrecto; eliminar obsoleto; preservar decisiones históricas útiles; sin fuentes contradictorias | P · In-Place, Single Source |
+| 113.2 | Una ubicación autoritativa por conocimiento; enlaces, no duplicación | P · In-Place, Single Source |
