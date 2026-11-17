@@ -343,3 +343,21 @@ Aportes v2.0 sin fila: (1) lección v2.3-v2.4 del proyecto piloto (protocolo de 
 | 70.2 | Revertir a último estado bueno y reabordar deliberadamente si hace falta | P · Recovery paso 3 |
 | 70.3 | Recuperar solo cambios propios; nunca reset/amplio que barra trabajo ajeno | P · Recovery paso 4 (puntero a git-safety) |
 | 70.4 | Documentar la lección; escape sin check → check (v2: Ledger) | P · Recovery paso 5 |
+
+## security — origen §3.5-3.6 + §36
+
+Inventario: 9 normas → **P: 9 · F: 0 · D: 0**.
+
+Nota: la lista de checks de seguridad del worker v1.1 (Engineering Checks → Security) queda cubierta por las mismas filas (36.2 despliega la familia completa: authn, authz, validación, encoding, inyección, secrets, exposición, traversal, SSRF, XSS, CSRF, command injection, SQLi, escalada, abuse/rate-limiting).
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 3.5.1 | Datos/estado de producción/credenciales/persistente = sensibles por defecto | P · Data Protection |
+| 3.5.2 | Destructivo/irreversible sobre datos importantes: autorización + verificación (target, scope, recuperación) | P · Data Protection |
+| 3.5.3 | Preferir instrumentos reversibles: previews, dry runs, backups, transacciones, migraciones reversibles, staged | P · Data Protection |
+| 3.5.4 | Nunca destruir/truncar/sobrescribir/transformar irreversiblemente por conveniencia | P · Data Protection + Safety |
+| 3.6.1 | Nunca debilitar: tests, authn, authz, validación, controles, manejo de errores, integridad, contratos — para facilitar implementación o pasar test | P · Never Weaken Controls |
+| 3.6.2 | Sin vulnerabilidades obvias introducidas; sin desactivar mecanismos por incomodidad | P · Never Weaken Controls |
+| 36.1 | Identificar fronteras de confianza; todo lo que cruza es no confiable hasta validar, en la frontera | P · Trust Boundaries |
+| 36.2 | Familia de superficies: inyección (SQL/comando), XSS, CSRF, SSRF, path traversal, escalada de privilegios, exposición de datos, encoding, abuse/rate limiting | P · Attack Surface Checklist |
+| 36.3 | No inventar requisitos de seguridad; SÍ señalar riesgos significativos introducidos, cada vez | P · Proportionality |
