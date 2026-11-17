@@ -361,3 +361,34 @@ Nota: la lista de checks de seguridad del worker v1.1 (Engineering Checks → Se
 | 36.1 | Identificar fronteras de confianza; todo lo que cruza es no confiable hasta validar, en la frontera | P · Trust Boundaries |
 | 36.2 | Familia de superficies: inyección (SQL/comando), XSS, CSRF, SSRF, path traversal, escalada de privilegios, exposición de datos, encoding, abuse/rate limiting | P · Attack Surface Checklist |
 | 36.3 | No inventar requisitos de seguridad; SÍ señalar riesgos significativos introducidos, cada vez | P · Proportionality |
+
+## concurrency-reliability — origen §§34-35 + §38
+
+Inventario: 24 normas → **P: 24 · F: 0 · D: 0**.
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 34.1 | No introducir concurrencia porque "parece más rápida": justificarla | P · Concurrency Discipline |
+| 34.2 | Identificar estado mutable compartido; estrategia declarada (lock/cola/single-writer/versión) | P · Concurrency Discipline |
+| 34.3 | Orden explícito donde importa; sin accidentes de scheduling | P · Concurrency Discipline |
+| 34.4 | Cancelación propaga; limpieza en todos los caminos | P · Concurrency Discipline |
+| 34.5 | Escrituras concurrentes: un dueño o árbitro; last-write-wins es decisión | P · Concurrency Discipline |
+| 34.6 | Check-then-act = race salvo atomicidad (lock/transacción/primitiva); patrones atómicos en archivos | P · Races and Invariants |
+| 34.7 | El invariante debe sostenerse en TODOS los intercalados, no solo en el probado | P · Races and Invariants |
+| 34.8 | Idempotencia: ejecución duplicada esperada (at-least-once, retries de usuario) | P · Reliability |
+| 34.9 | Timeouts en toda llamada externa, explícitos | P · Reliability + Safety |
+| 34.10 | Limpieza de recursos en concurrencia/async | P · Concurrency Discipline |
+| 35.1 | Todo lo que puede fallar falla: red, disco, tiempo, proceso | P · Reliability (apertura) |
+| 35.2 | Retries: acotados, backoff exponencial + jitter | P · Reliability |
+| 35.3 | Reintentar SOLO operaciones idempotentes (o hacerlas idempotentes: claves) | P · Reliability + Safety |
+| 35.4 | Fallo parcial con respuesta definida (transacción/compensación/tolerancia declarada) | P · Reliability |
+| 35.5 | Degradar elegante o fallar rápido: decisión deliberada, no deriva | P · Reliability |
+| 35.6 | Circuit breakers/bulkheads según blast radius, no por defecto | P · Reliability |
+| 38.1 | Edge: vacío/nulo/ausente; cadena vacía, campo faltante, lista cero | P · Edge-Case Sweep |
+| 38.2 | Edge numérico: cero, negativo, drift flotante, overflow, off-by-one | P · Edge-Case Sweep |
+| 38.3 | Edge unicode: emoji, composición, normalización, RTL; bytes vs caracteres | P · Edge-Case Sweep |
+| 38.4 | Edge grande: entradas/conteos/archivos enormes — ¿degrada o muere? | P · Edge-Case Sweep |
+| 38.5 | Edge duplicados/orden: misma clave dos veces; orden estable vs sin especificar | P · Edge-Case Sweep |
+| 38.6 | Edge tiempo: zonas horarias, DST, medianoche, definición de "hoy", clock skew | P · Edge-Case Sweep |
+| 38.7 | Edge locale: separadores decimales, formatos de fecha, casing por idioma | P · Edge-Case Sweep |
+| 38.8 | Edge repetición: el mismo evento dos veces (retry, doble clic, re-entrega) | P · Edge-Case Sweep |
