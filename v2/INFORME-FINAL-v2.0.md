@@ -168,7 +168,7 @@ remoto:    main=cc3de3f · v2.0=a1c4cc7
 
 ## 8. Instrucción de merge (DECISIÓN Y EJECUCIÓN EXCLUSIVAS DEL DUEÑO)
 
-1. Desde la web: `github.com/sasabox2019-dev/prompts/compare/main...v2.0` → «Create pull
+1. Desde la web: `github.com/sasabox2019-dev/Maestro-Disco-Worker/compare/main...v2.0` → «Create pull
    request». La descripción puede copiarse de este informe.
 2. **AVISO de cuenta sola**: si la regla de main exige «1 approval», GitHub NO permite al
    dueño auto-aprobar su propio PR en una cuenta personal. Opciones: aprobar con la segunda
