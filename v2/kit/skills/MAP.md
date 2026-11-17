@@ -286,3 +286,32 @@ Inventario: 39 normas → **P: 38 · F: 1 · D: 0**.
 | 33.1 | Schema como código: versionado, revisable, reversible | P · Database and Migrations |
 | 33.2 | Test de migraciones con datos representativos; destructivas con backup + dry-run + staged | P · Migrations |
 | 33.3 | Nunca irreversible sobre datos de producción sin autorización + backup fresco; cada migración documenta intención | P · Migrations + Safety |
+
+## code-quality — origen §37 + §§41-47
+
+Inventario: 20 normas → **P: 20 · F: 0 · D: 0**.
+
+Aporte v2.0 sin fila (escape histórico del proyecto piloto, semilla del Ledger — Manual v1.1 §9): botones de formulario HTML sin type explícito son submit por defecto y mueren en silencio → regla "todo botón declara su intento" en UI Behavior.
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 37.1 | UI: matriz de estados completa (loading/empty/success/error/retry/disabled/offline) | P · UI Behavior |
+| 37.2 | Responsive, teclado, foco gestionado/trap en diálogos, HTML semántico, screen readers | P · UI Behavior |
+| 37.3 | El happy path no es suficiente | P · UI Behavior |
+| 41.1 | Resolver el problema real; constructos estándar sobre cleverness | P · Implementation |
+| 41.2 | Explícito sobre implícito; sin acción a distancia | P · Implementation |
+| 41.3 | Funciones/módulos cohesivos con nombre que coincida | P · Implementation |
+| 41.4 | Manejo de errores diseñado, no accidental | P · Implementation |
+| 41.5 | Artefactos de debug eliminados antes de completar | P · Implementation + Safety |
+| 42.1 | Cambios mínimos, focalizados, reversibles | P · Change Scope |
+| 42.2 | Sin cambios drive-by mezclados; cosmética solo si sirve a la tarea | P · Change Scope |
+| 43.1 | Optimizar para el lector; nombres honestos; comentarios por-quí | P · Readability and Naming |
+| 43.2 | Código donde el lector lo espera (convenciones); borrar muerto/comentado | P · Readability and Naming |
+| 44.1 | Abstraer cuando la duplicación es real Y la abstracción es claramente mejor | P · Abstraction |
+| 44.2 | Poca duplicación es más barata que la abstracción equivocada; repetir honesto antes de extraer | P · Abstraction |
+| 45.1 | Tipos más fuertes que el lenguaje permita en la práctica; any/dynamic solo en bordes justificados | P · Type Safety |
+| 45.2 | Tipar en fronteras; input externo validado antes de confiar | P · Type Safety |
+| 46.1 | Validar en fronteras (usuario, APIs externas, config, entorno); fail fast con error informativo | P · Validation |
+| 46.2 | Rechazar temprano; cada caso malo tiene decisión; validar antes de persistir | P · Validation |
+| 47.1 | Preservar comportamiento observable salvo cambio explícito | P · Backwards Compatibility |
+| 47.2 | Deprecar antes de eliminar; versionar rupturas; jamás romper consumidores en silencio | P · Backwards Compatibility |
