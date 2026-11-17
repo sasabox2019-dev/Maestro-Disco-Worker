@@ -459,3 +459,7 @@ Aportes v2.0 sin fila: (1) DECISIONS.md con ciclo de vida ADR (Estado activa/sup
 | 112.2 | Sin cambio durable → sin docs de ceremonia | P · The Update Question |
 | 113.1 | Corregir lo incorrecto; eliminar obsoleto; preservar decisiones históricas útiles; sin fuentes contradictorias | P · In-Place, Single Source |
 | 113.2 | Una ubicación autoritativa por conocimiento; enlaces, no duplicación | P · In-Place, Single Source |
+
+## code-reviewer — NUEVA
+
+Fuente: rol de auditor adversarial de la Auditoría 1 — Plan Maestro §2 ("El auditor adversarial: revisar diff vs SPEC vs DECISIONS sin conocer el razonamiento del autor", ~60 líneas) y §3.5 ("code-reviewer para abrir en chat fresco solo en cambios grandes"); Síntesis Maestra Fase 5 ("skill code-reviewer (40 líneas)... Eso hace el sistema vivo"). Sin filas de cobertura: no tiene origen en v1.1. Revisión personal del dueño al cierre de F1.
