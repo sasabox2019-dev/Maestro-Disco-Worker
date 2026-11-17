@@ -144,3 +144,7 @@ Inventario: 125 normas (48 en §§4-16 · 77 en §§79-107) → **P: 123 · F: 2
 | 106.2 | Conocimiento esencial solo en la conversación = no materializado | P · Completion Test |
 | 107.1 | Reporte final: Established / Created or changed / Verified / Remaining | P · Bootstrap Report |
 | 107.2 | Sin "production-ready" inflado; lenguaje preciso sobre lo validado de verdad | P · Bootstrap Report + Safety |
+
+## spec-writing — NUEVA
+
+Fuente: patrón spec-driven development (SDD 2026) — Plan Maestro §2 (skill nueva, "~80 líneas") y §3.1 (F1 del núcleo produce SPEC.md); Síntesis Maestra Fase 1 (voto mentor: formalizar el reporte de bootstrap como SPEC.md con criterios de aceptación verificables, adaptación ligera de la propuesta de Google). Sin filas de cobertura: no tiene origen en v1.1. Revisión personal del dueño al cierre de F1.
