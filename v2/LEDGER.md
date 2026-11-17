@@ -8,7 +8,7 @@ Fuente autoritativa de entradas. El mecanismo (cuándo consultar, cómo converti
 
 ## Entrada 1 — Merge prematuro de main desde la web
 
-- **Fecha del escape:** 2026-11-16 21:52:53 +0100 (detectado 2026-11-17 ~09:0x +0100, en la verificación pre-F2 de esta construcción)
+- **Fecha del escape:** 2026-11-16 21:52:53 +0100 (detectado 2026-11-17 por la mañana, huso +0100, en la verificación pre-F2 de esta construcción — sin timestamp propio exacto: la detección no ejecutó `date` en ese lote, lección aplicada)
 - **Qué coló:** un humano mergeó la rama v2.0 (en estado parcial: F0 + 1 skill de 12) a main desde la web de GitHub — banner "Compare & pull request", PR #1, cuenta BilboDev — sin que ningún mecanismo del sistema lo impidiera.
 - **Qué regla existía y no lo paró:** ninguna. El control era solo de proceso ("el merge de main es decisión exclusiva del dueño al final de F6"): sin diente mecánico en el repo y sin protección de rama en GitHub.
 - **Lección:** el botón verde del banner fusiona de verdad; el merge de main es ceremonia exclusiva de F6.

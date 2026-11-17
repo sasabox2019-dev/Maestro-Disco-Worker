@@ -76,7 +76,7 @@ Deliver the bootstrap report (format below). Then the relay test: the bootstrap 
 These hold during every phase:
 
 - One task per message; one edit per step, verifying the touched file before continuing.
-- `verificar.sh --fast` after each edit; `--full` before every commit — the pre-commit hook enforces it anyway.
+- When `scripts/verificar.sh` is installed (from F3 on): `--fast` after each edit, `--full` before every commit — the pre-commit hook enforces it anyway.
 - On an "impossible" error (the disk disagrees with what was written): re-verify the bytes before theorizing.
 - Single session per repository: never two concurrent agents on the same repo without explicit coordination.
 - Commits per coherent unit, descriptive message, no noise, no secrets — ever.

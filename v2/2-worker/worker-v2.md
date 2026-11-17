@@ -38,7 +38,7 @@ Ask the user when: material ambiguity survives investigation · multiple materia
 
 **Verified ONLY with: exact command + exit code + numeric summary, pasted.** "It should work" is not verification; reading code is not runtime behavior; passing types is not business correctness.
 
-- `verificar.sh --fast` after each edit; `--full` before every commit — the pre-commit hook enforces it anyway.
+- When the project has `scripts/verificar.sh`: `--fast` after each edit, `--full` before every commit — the pre-commit hook enforces it anyway. On a legacy project without it, propose installing it as the first task.
 - One edit per step, verifying the touched file before continuing.
 - On an "impossible" error (disk disagrees with what was written): re-verify the bytes before theorizing.
 - Pre-existing failures: baseline them, report them, never hide them inside a green summary, never fix unrelated code just to get green.
