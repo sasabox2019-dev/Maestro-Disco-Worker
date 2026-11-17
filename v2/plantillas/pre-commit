@@ -1,0 +1,37 @@
+#!/bin/sh
+# pre-commit v2 - runs verificar.sh --full before every commit.
+# Install: cp plantillas/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
+#
+# Shielding the judge (tribunal finding D1): if this commit touches
+# scripts/verificar.sh, it requires EXPLICIT human confirmation.
+# An agent never modifies its own verifier in silence.
+
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || { printf 'pre-commit: not a git repo\n'; exit 1; }
+
+# Shield fires only when an EXISTING judge is being changed: staged now AND already
+# present in HEAD. The bootstrap's first install (no HEAD yet, or path not in HEAD)
+# passes without prompt -- otherwise no agent session could ever install the verifier.
+STAGED_JUDGE=0
+if git diff --cached --name-only 2>/dev/null | grep -q '^scripts/verificar\.sh$'; then
+  if git cat-file -e 'HEAD:scripts/verificar.sh' 2>/dev/null; then
+    STAGED_JUDGE=1
+  fi
+fi
+
+if [ "$STAGED_JUDGE" -eq 1 ]; then
+  printf 'WARNING: this commit modifies scripts/verificar.sh - the judge itself.\n'
+  printf 'An agent must never weaken its own verifier in silence.\n'
+  printf 'Type VERIFY-OK (exactly) to confirm a human approved this change: '
+  ANSWER=""
+  if ! read -r ANSWER </dev/tty 2>/dev/null; then
+    read -r ANSWER || ANSWER=""
+  fi
+  if [ "$ANSWER" = "VERIFY-OK" ]; then
+    printf 'Confirmed: verifier change proceeds to full verification.\n'
+  else
+    printf 'Aborted: verifier modification not confirmed.\n'
+    exit 1
+  fi
+fi
+
+"$REPO_ROOT/scripts/verificar.sh" --full
