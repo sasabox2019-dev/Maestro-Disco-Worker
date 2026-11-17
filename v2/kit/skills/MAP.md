@@ -4,6 +4,26 @@ Una fila por norma de origen del master v1.1 (`old/1/2master-bootstrap.md`).
 Disposición: **P** = presente en la skill (sección) · **F** = fusionada (sección) · **D** = descartada (test y razón).
 Ninguna norma se descarta por longitud — solo por test (a) deducible del código genérico o (b) micro-paso/vaguedad.
 
+### TALLY CONSOLIDADO (F1 cerrada)
+
+| Skill | Origen v1.1 | Normas | P | F | D | Líneas |
+|---|---|---|---|---|---|---|
+| bootstrap-foundation | §§4-16 + §§79-107 | 125 | 123 | 2 | 0 | 191 |
+| spec-writing | NUEVA (SDD 2026) | — | — | — | — | 77 |
+| verification-reporting | §§74-78 + §120 | 14 | 14 | 0 | 0 | 104 |
+| git-safety | §§13-14 + §§55-58 + §§63-64 | 25 | 22 | 3 | 0 | 84 |
+| testing | §§48-54 | 26 | 26 | 0 | 0 | 68 |
+| architecture-design | §§17-33 | 39 | 38 | 1 | 0 | 100 |
+| code-quality | §37 + §§41-47 | 20 | 20 | 0 | 0 | 64 |
+| debugging | §§52-54 + §70 | 19 | 19 | 0 | 0 | 68 |
+| security | §§3.5-3.6 + §36 | 9 | 9 | 0 | 0 | 65 |
+| concurrency-reliability | §§34-35 + §38 | 24 | 24 | 0 | 0 | 63 |
+| memory-maintenance | §§89-113 | 56 | 21 | 35 | 0 | 78 |
+| code-reviewer | NUEVA (Auditoría 1) | — | — | — | — | 65 |
+| **TOTAL** | | **357** | **316** | **41** | **0** | **1027** |
+
+Nota: 12 filas de testing (§§52-54) están contadas como P-con-puntero en testing Y como P en debugging (origen directo) — el oro no se perdió, se mudó con doble ancla declarada.
+
 ---
 
 ## bootstrap-foundation — origen §§4-16 + §§79-107
