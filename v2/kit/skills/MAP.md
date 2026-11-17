@@ -148,3 +148,26 @@ Inventario: 125 normas (48 en §§4-16 · 77 en §§79-107) → **P: 123 · F: 2
 ## spec-writing — NUEVA
 
 Fuente: patrón spec-driven development (SDD 2026) — Plan Maestro §2 (skill nueva, "~80 líneas") y §3.1 (F1 del núcleo produce SPEC.md); Síntesis Maestra Fase 1 (voto mentor: formalizar el reporte de bootstrap como SPEC.md con criterios de aceptación verificables, adaptación ligera de la propuesta de Google). Sin filas de cobertura: no tiene origen en v1.1. Revisión personal del dueño al cierre de F1.
+
+## verification-reporting — origen §§74-78 + §120
+
+Inventario: 14 normas → **P: 14 · F: 0 · D: 0**.
+
+Aporte v2.0 (Síntesis Maestra, consenso refinado del tribunal 1, sin fila por no tener origen v1.1): evidencia pegada ACOTADA — comando + exit code + resumen numérico, nunca logs enteros; "un claim sin comando pegado es opinión".
+
+| # | Norma origen (comprimida) | Disposición |
+|---|---|---|
+| 74.1 | Clasificar conclusiones inciertas: high / moderate / low / blocked | P · Confidence Scale |
+| 74.2 | Low/blocked con riesgo real: investigar más, reducir scope, opción reversible o preguntar | P · Confidence Scale |
+| 74.3 | Nunca convertir incertidumbre en hecho en silencio | P · Confidence Scale + Safety |
+| 75.1 | Términos definidos: Verified / Assumed / Unknown / Blocked | P · Verification Language |
+| 75.2 | Nunca usar verified/tested/works/passes/built/deployed sin que ocurrió; no inferir éxito del código correcto; si no corrió, no pasó; bloqueo se explica | P · Verification Language |
+| 76.1 | Un check solo es válido si su evidencia es relevante para el claim (ejemplos: leer código ≠ runtime; typecheck ≠ lógica; unit ≠ deploy; build ≠ producción; review ≠ ejecución) | P · tabla Check Must Match |
+| 76.2 | Igualar la fuerza del claim a la fuerza de la evidencia | P · tabla + Reporting |
+| 77.1 | Trabajo bloqueado: qué falta, por qué importa, qué SÍ está verificado, siguiente acción más segura | P · Blocked Work |
+| 77.2 | Nunca fabricar resultados ni sustituir en silencio una implementación materialmente distinta | P · Blocked Work + Safety |
+| 78.1 | Completo = resultado logrado de forma fiable (comportamiento existe, causa raíz abordada, verificado, regresiones consideradas, diff limpio, conocimiento sincronizado, incertidumbre comunicada) | P · Completion Standard |
+| 78.2 | El estándar NO es "archivos cambiados" | P · Completion Standard |
+| 120.1 | Checklist final antes de declarar completa una tarea (15 ítems: comportamiento, ACs, preservación, tests, checks estáticos, diff) | P · Final Checklist |
+| 120.2 | Higiene del diff: sin debug, sin temporales, sin secrets, sin cambios no relacionados | P · Final Checklist |
+| 120.3 | Contratos/APIs, seguridad de datos/migraciones y sincronización de docs considerados donde apliquen | P · Final Checklist |
